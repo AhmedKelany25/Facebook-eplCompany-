@@ -1,0 +1,276 @@
+ <div class="home-container">
+    <div class="home__header">
+      <div class="home__header__left">
+        <img mat-card-avatar src="assets/fb-head.jpg"/>
+        <div class="input">
+          <mat-icon class="search-icon">search_outline</mat-icon>
+          <form>
+            <input placeholder="Search Facebook" type="text">
+          </form>
+        </div>
+  
+      </div>
+      <div class="home__header__middle">
+        <div class="active">
+          <mat-icon>home</mat-icon>
+        </div>
+        <div>
+          <mat-icon>ondemand_video</mat-icon>
+        </div>
+        <div>
+          <mat-icon>store</mat-icon>
+        </div>
+        <div>
+          <mat-icon>group</mat-icon>
+        </div>
+        <div>
+          <mat-icon>flag</mat-icon>
+        </div>
+  
+      </div>
+      <div class="home__header__right">
+        <div>
+          <img
+            alt=""
+            mat-card-avatar
+            src="../../assets/ahmedKamel25.jpg">
+          <span class="name">{{ user?.firstName || 'Ahmed'}}</span>
+        </div>
+        <div>
+          <mat-icon>add</mat-icon>
+        </div>
+  
+        <div>
+          <mat-icon matBadge="4"
+                    matBadgeColor="primary"
+                    matBadgeOverlap="false"
+                    matBadgePosition="above after"> forum
+          </mat-icon>
+        </div>
+  
+        <div>
+          <mat-icon matBadge="3"
+                    matBadgeColor="warn"
+                    matBadgeOverlap="false">notifications
+          </mat-icon>
+        </div>
+  
+  
+        <div>
+  
+          <mat-icon [matMenuTriggerFor]="menu">expand_more</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item >
+              <mat-icon>exit_to_app</mat-icon> Logout
+            </button>
+          </mat-menu>
+        </div>
+  
+      </div>
+    </div>
+  
+    <div class="home__body">
+  
+      <div class="home__body__sidebarLeft">
+        <div class="inside">
+          <div class="user-avatar">
+            <img
+              alt=""
+              mat-card-avatar
+              src="../../assets/ahmedKamel25.jpg">
+              <span class="name">{{ user?.firstName || 'Ahmed Kamel'}} {{ user?.lastName }}</span>
+          </div>
+          <div class="img_lift"  >
+            <!-- <mat-icon> local_hospital</mat-icon> -->
+            <img src="../../assets/covid.png"/>
+            <span class="covid">COVID-19 Information Center</span>
+          </div>
+  
+          <div class="img_lift" >
+            <!-- <mat-icon>flag</mat-icon> -->
+            <img src="../../assets/friends.png" />
+            <span>Friends</span>
+          </div>
+  
+          <div class="img_lift" >
+            <!-- <mat-icon>people</mat-icon> -->
+            <img src="../../assets/watch.png" />
+            <span>Watch</span>
+          </div>
+  
+          <div class="img_lift">
+            <!-- <mat-icon> chat</mat-icon> -->
+            <img src="../../assets/Groups.png" />
+            <span>Groups</span>
+          </div>
+  
+          <div class="img_lift">
+            <!-- <mat-icon>store</mat-icon> -->
+            <img src="../../assets/marketPlace.png" />
+            <span>Marketplace</span>
+          </div>
+  
+          <div class="img_lift">
+            <!-- <mat-icon>video_library</mat-icon> -->
+            <img src="../../assets/events.png" />
+            <span>Events</span>
+          </div>
+          <div class="img_lift">
+            <!-- <mat-icon>video_library</mat-icon> -->
+            <img src="../../assets/memorize.png" />
+            <span>Memories</span>
+          </div>
+  
+          <div class="img_lift" >
+            <mat-icon class="see-more" >expand_more</mat-icon>
+            <span>See More</span>
+          </div>
+  
+        </div>
+      </div>
+  
+      <div class="home__body__contentMiddle">
+  
+        <div class="home__body__contentMiddle__top">
+          <!--IMAGE CARDS-->
+          <mat-card *ngFor="let i of images" class="image-card">
+            <img alt="bg"
+                 class="bg" src="{{ i }}">
+            <mat-card-content>
+              <img
+                alt="avatar"
+                class="avatar" src="{{i}}">
+              <span class="card-name">Ahmed Kamel</span>
+            </mat-card-content>
+          </mat-card>
+  
+        </div>
+  
+        <div class="home__body__contentMiddle__center">
+          <mat-card class="post-message">
+            <mat-card-header class="post-message-header"
+                             style="padding-bottom: 20px; border-bottom: 1px solid lightgray;">
+              <img
+                alt=""
+                mat-card-avatar
+                src="../../assets/ahmedKamel25.jpg">
+              <form [formGroup]="postFace" (ngSubmit)="onSubmit()">
+                <input class="on-your-mind" name="message" formControlName="nasi" placeholder="What's on your mind?" type="text">
+                <button style="display: none;" type="submit"></button>
+              </form>
+  
+            </mat-card-header>
+            <mat-card-content class="card-body">
+              <div>
+                <mat-icon color="accent">videocam</mat-icon>
+                <span>Live Video</span>
+              </div>
+  
+              <div>
+                <mat-icon color="primary">photo_album</mat-icon>
+                <span>Photo/Video</span>
+              </div>
+  
+              <div>
+                <mat-icon color="warn">mood</mat-icon>
+                <span>Feeling/Activity</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+  
+          <mat-card class="example-card" *ngFor="let post of data_posts">
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image">
+                <img class="image-acc" src="{{post.acco_img}}"/>
+              </div>
+              <mat-card-title>{{post.name}}</mat-card-title>
+              <mat-card-subtitle>{{post.hour}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>
+                {{post.post}}
+              </p>
+            </mat-card-content>
+            <img *ngIf="post.img" mat-card-image src="{{post.img}}" alt="Photo">
+
+            <div class="emoji">
+              <div><span> <img src="../../assets/smile.png" alt=""></span> 200</div>
+              <div> 
+                <span>312 Comment</span>
+                <span  class="share">299 Share</span>
+
+
+              </div>
+            </div>
+            <hr/>
+            <mat-card-actions>
+              <button mat-button>
+                <mat-icon>thumb_up_alt</mat-icon>
+                LIKE</button>
+                <button mat-button>
+                  <mat-icon >comment</mat-icon>
+                  Comment
+                </button>
+              <button mat-button>
+                <mat-icon >share</mat-icon>
+                SHARE
+              </button>
+
+            </mat-card-actions>
+          </mat-card>
+
+  
+        </div>
+  
+  
+      </div>
+  
+      <div class="home__body__feedRight">
+        <div class="inside">
+          <div class="requests">
+            <div class="friends-requets">
+              <img src="../../assets/friends.png"/>
+              <span>Friends requests</span>
+          </div>
+            <div class="requests-img">
+              <div class="requests-img-friend"></div>
+              <div>
+                <h3 class="request-name">shady ali</h3>
+                <button type="button" class="request-confirm">Confirm</button>
+                <button type="button"  class="request-delete">Delete</button>
+
+              </div>
+            </div>
+
+          </div>
+
+          <div class="right-sec">
+            <hr/>
+            <div class="right-icons">
+              <h3> Contacts </h3>
+              <div >   
+                <mat-icon >videocam</mat-icon>
+
+                <mat-icon class="search-icon search-i" >search_outline</mat-icon>
+              </div>
+            </div>
+
+            <div *ngFor="let friend of friends" class="right-sec-friends">
+              <img src="{{friend.img}}"/>
+              <h3 class="right-name">{{friend.name}}</h3>
+            </div>
+          </div>
+
+        </div>
+    
+      </div>
+  
+    </div>
+  </div>
+  
+
+
+
+
+
+
